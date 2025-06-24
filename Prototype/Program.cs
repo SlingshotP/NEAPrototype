@@ -206,7 +206,7 @@ internal class Program
             ConsoleKey difficulty = Console.ReadKey(true).Key;
             if (difficulty == ConsoleKey.Escape) break;
 
-            Dungeon dungeon = null!;
+            Dungeon? dungeon = null;
 
             if (difficulty == ConsoleKey.D1)
                 dungeon = new(20, 20);
