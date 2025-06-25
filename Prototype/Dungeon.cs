@@ -297,7 +297,7 @@ public class Dungeon
     {
         Console.SetCursorPosition(Width * 2 + 3, 0);
         Console.ForegroundColor = ConsoleColor.Blue;
-        Console.WriteLine("You have found the blue key! unlock the blue door :)");
+        Console.WriteLine("You have found the blue key! Use it to unlock the blue door.");
         Console.ForegroundColor = ConsoleColor.Gray;
     }
 

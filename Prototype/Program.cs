@@ -79,26 +79,33 @@ internal class Program
             }
         }
     }
+
     static void InfixToPostfix()
     {
         while (true)
         {
-            Stack<string> stack = new Stack<string>();
-            List<string> postfix = new List<string>();
-
-            Console.Clear();
-            Console.WriteLine("INFIX TO POSTFIX");
-            Console.Write("Input (include spaces between every operator and operand): ");
-            string[] input = Console.ReadLine()!.Trim().Split(" ");
-            Dictionary<string, int> precedence = new()
-            {
-                { "+", 0 },
-                { "-", 0 },
-                { "*", 1 },
-                { "/", 1 },
-            };
             try
             {
+                Stack<string> stack = new Stack<string>();
+                List<string> postfix = new List<string>();
+
+                Console.Clear();
+                Console.WriteLine("INFIX TO POSTFIX");
+                Console.Write("Input (include spaces between every operator and operand): ");
+                string[] input = Console.ReadLine()!.Trim().Split(" ");
+                for (int i = 0; i < input.Length; i++)
+                {
+                    if (i % 2 == 0 && !"0123456789()".Contains(input[i])) throw new Exception();
+                    else if (i % 2 == 1 && !"+-*/".Contains(input[i])) throw new Exception();
+                }
+                Dictionary<string, int> precedence = new()
+                {
+                    { "+", 0 },
+                    { "-", 0 },
+                    { "*", 1 },
+                    { "/", 1 },
+                };
+            
                 for (int i = 0; i < input.Length; i++)
                 {
                     string token = input[i];
@@ -121,7 +128,7 @@ internal class Program
                     }
                     else
                     {
-                        if (i - 1 == input.Length)
+                        if (i + 1 == input.Length)
                         {
                             throw new Exception();
                         }
@@ -155,26 +162,28 @@ internal class Program
             }
         }
     }
+
     static void PostfixToInfix()
     {
         while (true)
         {
-            Stack<string> stack = new();
-
-            Console.Clear();
-            Console.WriteLine("POSTFIX TO INFIX");
-            Console.Write("Input (include spaces between every operator and operand): ");
-            string[] input = Console.ReadLine()!.Split(" ");
-            Dictionary<string, int> precedence = new()
-            {
-                { "+", 0 },
-                { "-", 0 },
-                { "*", 1 },
-                { "/", 1 }
-            };
 
             try
             {
+                Stack<string> stack = new();
+
+                Console.Clear();
+                Console.WriteLine("POSTFIX TO INFIX");
+                Console.Write("Input (include spaces between every operator and operand): ");
+                string[] input = Console.ReadLine()!.Split(" ");
+
+                Dictionary<string, int> precedence = new()
+                {
+                    { "+", 0 },
+                    { "-", 0 },
+                    { "*", 1 },
+                    { "/", 1 }
+                };
                 foreach (string token in input)
                 {
                     if (!"+-*/".Contains(token))
@@ -203,6 +212,7 @@ internal class Program
             }
         }
     }
+
     static void EvaluatePostfix()
     {
         while (true)
